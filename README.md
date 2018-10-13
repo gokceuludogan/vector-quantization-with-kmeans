@@ -13,7 +13,7 @@ The arguments are optional. Their default values are as follows:
 		--load: False 
 		--train-datapoints: train-datapoints.npy
 		--test-datapoints: test-datapoints.npy 
-		--splittype: binary // binary, binary-recursive or multiple
+		--splittype: binary-recursive // binary, binary-recursive or multiple
 		--distance: l2 // l2 or l1
 		--output: distortions.log
 
