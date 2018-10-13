@@ -20,9 +20,9 @@ class VectorQuantizer:
         self.split_type = split_type
         self.output = output
         print('Vector Quantizer is initialized with following parameters')
-        print('distance ' + str(distance_method))
-        print('centroid method ' + str(centroid_method))
-        print('split type ' + str(split_type))
+        print('     distance ' + str(distance_method))
+        print('     centroid method ' + str(centroid_method))
+        print('     split type ' + str(split_type))
 
     def distance(self, point1, point2):
         return np.linalg.norm(point1-point2, ord=self.distance_method)
@@ -132,12 +132,14 @@ class VectorQuantizer:
         plt.plot(self.cluster_schedule, test_distortions, label='Test distortions')
         plt.xlabel("Schedule")
         plt.ylabel("Total Distortions")
+        plt.legend()
         plt.savefig(self.split_type + 'total_distortions.png')
         plt.figure(2)
         plt.plot(self.cluster_schedule, [distortion/len(self.train_data) for distortion in train_distortions], label='Training distortions per point')
         plt.plot(self.cluster_schedule, [distortion/len(self.test_data) for distortion in test_distortions], label='Test distortions per point')
         plt.xlabel("Schedule")
         plt.ylabel("Distortions per point")
+        plt.legend()
         plt.savefig(self.split_type + 'distortions_per_point.png')
 
     def save_distortions(self, train_distortions, test_distortions):
@@ -195,8 +197,8 @@ if __name__ == '__main__':
     parser.add_argument('--load', default=False)
     parser.add_argument('--trainpoints', default='train-datapoints.npy')
     parser.add_argument('--testpoints', default='test-datapoints.npy')
-    parser.add_argument("--train", default=join(join('../assignment-1', 'ProjectData'), 'TrainData'))
-    parser.add_argument("--test", default=join(join('../assignment-1', 'ProjectData'), 'EvalData'))
+    parser.add_argument("--train", default=join(join(getcwd(), 'ProjectData'), 'TrainData'))
+    parser.add_argument("--test", default=join(join(getcwd(), 'ProjectData'), 'EvalData'))
     parser.add_argument("--splittype", default='binary-recursive')
     parser.add_argument("--distance", default='l2')
     parser.add_argument("--output", default='distortions.log')
